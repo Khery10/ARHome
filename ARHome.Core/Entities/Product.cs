@@ -8,9 +8,13 @@ namespace ARHome.Core.Entities
     {
         [Required, StringLength(80)]
         public string Name { get; set; }
+
         public string ImageUrl { get; set; }
- 
+
         public int CategoryId { get; set; }
+
+        public string Description { get; set; }
+
         public virtual Category Category { get; set; }
 
         public static Product Create(int productId, int categoryId, string name)

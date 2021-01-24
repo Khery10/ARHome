@@ -17,9 +17,9 @@ namespace ARHome.Api.Application.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
-            _logger.LogInformation("Before request");
+            _logger.LogInformation($"Request {context.Request?.Method} {context.Request?.Path}");
             await _next(context);
-            _logger.LogInformation("After request");
+            _logger.LogInformation($"Response {context.Response?.StatusCode}");
         }
     }
 }

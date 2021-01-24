@@ -25,7 +25,7 @@ namespace ARHome.Api.Controllers
 
         [Route("[action]")]
         [HttpGet]
-        public IActionResult Ping() => Ok("ok v1.0");
+        public IActionResult Ping() => Ok("Bang Bang!");
 
         [Route("[action]")]
         [HttpGet]

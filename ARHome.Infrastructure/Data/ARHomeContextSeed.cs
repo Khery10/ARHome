@@ -4,6 +4,7 @@ using ARHome.Core.Repositories;
 using ARHome.Core.Repositories.Base;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,32 +23,29 @@ namespace ARHome.Infrastructure.Data
             ARHomeContext ARHomeContext,
             IProductRepository productRepository,
             IRepository<Category> categoryRepository,
-            ARHomeSettings settings)
+            IOptions<ARHomeSettings> settings)
         {
             _ARHomeContext = ARHomeContext;
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
-            _settings = settings;
+            _settings = settings?.Value;
         }
 
         public async Task SeedAsync()
         {
-            // TODO: Only run this if using a real database
-            // _ARHomeContext.Database.Migrate();
-            // _ARHomeContext.Database.EnsureCreated();
+          //  _ARHomeContext.Database.Migrate();
 
             // categories - specifications
             await SeedCategoriesAsync();
-
         }
 
         private async Task SeedCategoriesAsync()
         {
             if (!_categoryRepository.Table.Any())
             {
-                var categories = new List<Category>(_settings.DbContextSeed.Categories.Length);
-                for (int i = 0; i < _settings.DbContextSeed.Categories.Length; i++)
-                    categories.Add(Category.Create(i + 1, categories[i].Name));
+                var categories = Enumerable
+                    .Range(1, _settings.DbContextSeed.Categories.Length)
+                    .Select(i => Category.Create(i, _settings.DbContextSeed.Categories[i - 1].Name));
 
                 await _categoryRepository.AddRangeAsync(categories);
             }

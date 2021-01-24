@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using ARHome.Api.Application.Middlewares;
 using ARHome.Core.Configuration;
 using ARHome.Infrastructure.Data;
@@ -102,9 +103,10 @@ namespace ARHome.Api
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<ARHomeContext>(options =>
                         options.UseNpgsql(ARHomeSettings.ConnectionString,
-                        sqlOptions =>
+                        postgresOptions =>
                         {
-                            sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), null);
+                            postgresOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), null);
+                            postgresOptions.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
                         }
                     ),
                     ServiceLifetime.Scoped
