@@ -15,12 +15,16 @@ namespace ARHome.Api.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
+        private readonly IMediator _mediator;
         private readonly ICategoryService _categoryService;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(IMediator mediator, ICategoryService categoryService)
         {
             _categoryService = categoryService 
                 ?? throw new ArgumentNullException(nameof(categoryService));
+
+            _mediator = mediator
+                ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         [Route("[action]")]
@@ -33,8 +37,16 @@ namespace ARHome.Api.Controllers
         public async Task<ActionResult<IEnumerable<CategoryModel>>> GetCategories()
         {
             var categories = await _categoryService.GetCategoryList();
-
             return Ok(categories);
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        [ProducesResponseType(typeof(ProductModel), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<ProductModel>> GetCategoryById(GetByIdRequest request)
+        {
+            var category = await _categoryService.GetCategoryById(request.Id);
+            return Ok(category);
         }
 
         [Route("[action]")]
@@ -45,6 +57,16 @@ namespace ARHome.Api.Controllers
             var categoryPagedList = await _categoryService.SearchCategories(request.Args);
 
             return Ok(categoryPagedList);
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult> UpdateCategory(UpdateRequest<CategoryModel> request)
+        {
+            await _mediator.Send(request);
+            return Ok();
         }
     }
 }

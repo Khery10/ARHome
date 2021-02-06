@@ -1,11 +1,12 @@
 ﻿using ARHome.Api.Requests;
 using FluentValidation;
+using Microsoft.Extensions.Logging;
 
 namespace ARHome.Api.Application.Validations
 {
-    public class GetProductByIdRequestValidator : AbstractValidator<GetProductByIdRequest>
+    public class GetByIdRequestValidator : AbstractValidator<GetByIdRequest>
     {
-        public GetProductByIdRequestValidator()
+        public GetByIdRequestValidator()
         {
             RuleFor(request => request.Id).GreaterThan(0);
         }

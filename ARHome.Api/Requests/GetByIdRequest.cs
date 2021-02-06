@@ -1,6 +1,6 @@
 ﻿namespace ARHome.Api.Requests
 {
-    public class GetProductByIdRequest
+    public class GetByIdRequest
     {
         public int Id { get; set; }
     }

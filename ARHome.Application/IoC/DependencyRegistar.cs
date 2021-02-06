@@ -1,4 +1,6 @@
 ﻿using ARHome.Application.Interfaces;
+using ARHome.Application.Interfaces.Base;
+using ARHome.Application.Models;
 using ARHome.Application.Services;
 using ARHome.Infrastructure.IoC;
 using ARHome.Infrastructure.Misc;
@@ -18,8 +20,15 @@ namespace ARHome.Application.IoC
         public void Register(ContainerBuilder builder, ITypeFinder typeFinder)
         {
             // services
-            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
-            builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductService>()
+                .As<IProductService>()
+                .As<IService<ProductModel>>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<CategoryService>()
+                .As<ICategoryService>()
+                .As<IService<CategoryModel>>()
+                .InstancePerLifetimeScope();
         }
     }
 }

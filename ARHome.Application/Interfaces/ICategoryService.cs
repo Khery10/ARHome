@@ -10,5 +10,7 @@ namespace ARHome.Application.Interfaces
         Task<IEnumerable<CategoryModel>> GetCategoryList();
 
         Task<IPagedList<CategoryModel>> SearchCategories(PageSearchArgs args);
+
+        Task<CategoryModel> GetCategoryById(int Id);
     }
 }

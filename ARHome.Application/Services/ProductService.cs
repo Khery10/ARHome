@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ARHome.Application.Interfaces;
+using ARHome.Application.Interfaces.Base;
 using ARHome.Application.Mapper;
 using ARHome.Application.Models;
 using ARHome.Core.Entities;
@@ -13,25 +14,20 @@ using ARHome.Infrastructure.Paging;
 
 namespace ARHome.Application.Services
 {
-    public class ProductService : IProductService
+    public class ProductService : ServiceBase<Product, ProductModel>, IProductService
     {
         private readonly IProductRepository _productRepository;
         private readonly IAppLogger<ProductService> _logger;
 
         public ProductService(IProductRepository productRepository, IAppLogger<ProductService> logger)
+            : base(productRepository)
         {
             _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<IEnumerable<ProductModel>> GetProductList()
-        {
-            var productList = await _productRepository.ListAllAsync();
-
-            var productModels = ObjectMapper.Mapper.Map<IEnumerable<ProductModel>>(productList);
-
-            return productModels;
-        }
+            => await GetListAsync();
 
         public async Task<IPagedList<ProductModel>> SearchProducts(PageSearchArgs args)
         {
@@ -51,13 +47,7 @@ namespace ARHome.Application.Services
         }
 
         public async Task<ProductModel> GetProductById(int productId)
-        {
-            var product = await _productRepository.GetByIdAsync(productId);
-
-            var productModel = ObjectMapper.Mapper.Map<ProductModel>(product);
-
-            return productModel;
-        }
+            => await GetByIdAsync(productId);
 
         public async Task<IEnumerable<ProductModel>> GetProductsByName(string name)
         {
@@ -79,50 +69,13 @@ namespace ARHome.Application.Services
             return productModels;
         }
 
-        public async Task<ProductModel> CreateProduct(ProductModel product)
-        {
-            var existingProduct = await _productRepository.GetByIdAsync(product.Id);
-            if (existingProduct != null)
-            {
-                throw new ApplicationException("Product with this id already exists");
-            }
+        public async Task<ProductModel> CreateProduct(ProductModel product) 
+            => await CreateAsync(product);
 
-            var newProduct = ObjectMapper.Mapper.Map<Product>(product);
-            newProduct = await _productRepository.SaveAsync(newProduct);
+        public async Task UpdateProduct(ProductModel product) 
+            => await UpdateAsync(product);
 
-            _logger.LogInformation("Entity successfully added - ARHomeAppService");
-
-            var newProductModel = ObjectMapper.Mapper.Map<ProductModel>(newProduct);
-            return newProductModel;
-        }
-
-        public async Task UpdateProduct(ProductModel product)
-        {
-            var existingProduct = await _productRepository.GetByIdAsync(product.Id);
-            if (existingProduct == null)
-            {
-                throw new ApplicationException("Product with this id is not exists");
-            }
-
-            existingProduct.Name = product.Name;
-            existingProduct.CategoryId = product.CategoryId;
-
-            await _productRepository.SaveAsync(existingProduct);
-
-            _logger.LogInformation("Entity successfully updated - ARHomeAppService");
-        }
-
-        public async Task DeleteProductById(int productId)
-        {
-            var existingProduct = await _productRepository.GetByIdAsync(productId);
-            if (existingProduct == null)
-            {
-                throw new ApplicationException("Product with this id is not exists");
-            }
-
-            await _productRepository.DeleteAsync(existingProduct);
-
-            _logger.LogInformation("Entity successfully deleted - ARHomeAppService");
-        }
+        public async Task DeleteProductById(int productId) 
+            => await DeleteByIdAsync(productId);
     }
 }

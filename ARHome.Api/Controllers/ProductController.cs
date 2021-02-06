@@ -3,7 +3,6 @@ using ARHome.Application.Interfaces;
 using ARHome.Application.Models;
 using ARHome.Core.Paging;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -48,7 +47,7 @@ namespace ARHome.Api.Controllers
         [Route("[action]")]
         [HttpPost]
         [ProducesResponseType(typeof(ProductModel), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<ProductModel>> GetProductById(GetProductByIdRequest request)
+        public async Task<ActionResult<ProductModel>> GetProductById(GetByIdRequest request)
         {
             var product = await _productService.GetProductById(request.Id);
 
@@ -73,6 +72,16 @@ namespace ARHome.Api.Controllers
             var products = await _productService.GetProductsByCategoryId(request.CategoryId);
 
             return Ok(products);
-        }    
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult> UpdateProduct(UpdateRequest<ProductModel> request)
+        {
+            var commandResult = await _mediator.Send(request);
+            return Ok(commandResult);
+        }
     }
 }
