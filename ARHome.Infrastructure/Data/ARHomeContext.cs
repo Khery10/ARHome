@@ -36,7 +36,7 @@ namespace ARHome.Infrastructure.Data
 
         public async Task BeginTransactionAsync()
         {
-            _currentTransaction = _currentTransaction ?? await Database.BeginTransactionAsync();
+            _currentTransaction ??= await Database.BeginTransactionAsync();
         }
 
         public async Task CommitTransactionAsync()

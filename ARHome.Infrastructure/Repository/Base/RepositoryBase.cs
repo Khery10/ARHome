@@ -68,7 +68,7 @@ namespace ARHome.Infrastructure.Repository.Base
             await _context.SaveChangesAsync();
         }
 
-        public async virtual Task<IReadOnlyList<T>> ListAllAsync()
+        public virtual async Task<IReadOnlyList<T>> ListAllAsync()
         {
             return await Entities.ToListAsync();
         }

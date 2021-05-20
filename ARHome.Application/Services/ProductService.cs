@@ -61,7 +61,7 @@ namespace ARHome.Application.Services
 
         public async Task<IEnumerable<ProductModel>> GetProductsByCategoryId(int categoryId)
         {
-            var spec = new ProductWithCategorySpecification(categoryId);
+            var spec = new ProductsByCategorySpecification(categoryId);
             var productList = await _productRepository.GetAsync(spec);
 
             var productModels = ObjectMapper.Mapper.Map<IEnumerable<ProductModel>>(productList);

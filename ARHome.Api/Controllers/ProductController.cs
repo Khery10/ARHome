@@ -65,11 +65,11 @@ namespace ARHome.Api.Controllers
         }
 
         [Route("[action]")]
-        [HttpPost]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<ProductModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<ProductModel>>> GetProductsByCategoryId(GetProductsByCategoryIdRequest request)
+        public async Task<ActionResult<IEnumerable<ProductModel>>> GetProductsByCategoryId(int categoryId)
         {
-            var products = await _productService.GetProductsByCategoryId(request.CategoryId);
+            var products = await _productService.GetProductsByCategoryId(categoryId);
 
             return Ok(products);
         }

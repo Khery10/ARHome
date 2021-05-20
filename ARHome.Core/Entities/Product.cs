@@ -12,9 +12,7 @@ namespace ARHome.Core.Entities
         public string ImageUrl { get; set; }
 
         public int CategoryId { get; set; }
-
-        public string Description { get; set; }
-
+        
         public virtual Category Category { get; set; }
 
         public static Product Create(int productId, int categoryId, string name)
