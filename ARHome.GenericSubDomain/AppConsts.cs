@@ -2,6 +2,6 @@
 {
     public class AppConsts
     {
-        public const string AppNamespacePrefix = "SnegirSoft.";
+        public const string AppNamespacePrefix = "ARHome.";
     }
 }

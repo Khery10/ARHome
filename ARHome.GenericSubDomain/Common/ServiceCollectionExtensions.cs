@@ -24,6 +24,7 @@ namespace ARHome.GenericSubDomain.Common
             if (assembliesForScan == null)
                 throw new ArgumentNullException(nameof(assembliesForScan));
 
+            services.TryAddScoped<IDateTimeProvider, DateTimeProvider>();
             services.TryAddSingleton<ITypesScanner>(new TypesScanner(assembliesForScan));
             services.AddJsonSerializer();
 
