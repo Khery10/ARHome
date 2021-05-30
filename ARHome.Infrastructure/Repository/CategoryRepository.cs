@@ -1,77 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
-using ARHome.Core.Entities;
-using ARHome.Core.Paging;
-using ARHome.Core.Repositories;
+using ARHome.Core.Categories;
+using ARHome.Infrastructure.Abstractions.Repositories;
 using ARHome.Infrastructure.Data;
-using ARHome.Infrastructure.Paging;
-using ARHome.Infrastructure.Repository.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace ARHome.Infrastructure.Repository
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository
+    internal sealed class CategoryRepository : ICategoryRepository
     {
-        public CategoryRepository(ARHomeContext dbContext)
-            : base(dbContext)
+        private readonly ARHomeContext _context;
+
+        public CategoryRepository(ARHomeContext context)
+            => _context = context;
+
+        public async Task<Category[]> GetAllAsync(CancellationToken cancellationToken = default)
         {
+            return await _context.Set<Category>().ToArrayAsync(cancellationToken);
         }
 
-        public Task<IPagedList<Category>> SearchCategoriesAsync(PageSearchArgs args)
+        public async Task<Category> GetByIdAsync(CategoryKey id, CancellationToken cancellationToken = default)
         {
-            var query = Table;
+            var category = await _context
+                .Set<Category>()
+                .SingleOrDefaultAsync(cat => cat.Id == id, cancellationToken);
 
-            var orderByList = new List<Tuple<SortingOption, Expression<Func<Category, object>>>>();
+            if (category is null)
+                throw new KeyNotFoundException($"{nameof(Category)} with Id = {id} not found.");
 
-            if (args.SortingOptions != null)
-            {
-                foreach (var sortingOption in args.SortingOptions)
-                {
-                    switch (sortingOption.Field)
-                    {
-                        case "id":
-                            orderByList.Add(new Tuple<SortingOption, Expression<Func<Category, object>>>(sortingOption, c => c.Id));
-                            break;
-                        case "name":
-                            orderByList.Add(new Tuple<SortingOption, Expression<Func<Category, object>>>(sortingOption, c => c.Name));
-                            break;
-                        case "description":
-                            orderByList.Add(new Tuple<SortingOption, Expression<Func<Category, object>>>(sortingOption, c => c.Description));
-                            break;
-                    }
-                }
-            }
+            return category;
+        }
 
-            if (orderByList.Count == 0)
-            {
-                orderByList.Add(new Tuple<SortingOption, Expression<Func<Category, object>>>(new SortingOption { Direction = SortingOption.SortingDirection.ASC }, c => c.Id));
-            }
+        public async Task AddAsync(Category category, CancellationToken cancellationToken = default)
+        {
+            await _context.Set<Category>().AddAsync(category, cancellationToken);
+        }
 
-            var filterList = new List<Tuple<FilteringOption, Expression<Func<Category, bool>>>>();
-
-            if (args.FilteringOptions != null)
-            {
-                foreach (var filteringOption in args.FilteringOptions)
-                {
-                    switch (filteringOption.Field)
-                    {
-                        case "id":
-                            filterList.Add(new Tuple<FilteringOption, Expression<Func<Category, bool>>>(filteringOption, c => c.Id == (int)filteringOption.Value));
-                            break;
-                        case "name":
-                            filterList.Add(new Tuple<FilteringOption, Expression<Func<Category, bool>>>(filteringOption, c => c.Name.Contains((string)filteringOption.Value)));
-                            break;
-                        case "description":
-                            filterList.Add(new Tuple<FilteringOption, Expression<Func<Category, bool>>>(filteringOption, c => c.Description.Contains((string)filteringOption.Value)));
-                            break;
-                    }
-                }
-            }
-
-            var categoryPagedList = new PagedList<Category>(query, new PagingArgs { PageIndex = args.PageIndex, PageSize = args.PageSize, PagingStrategy = args.PagingStrategy }, orderByList, filterList);
-
-            return Task.FromResult<IPagedList<Category>>(categoryPagedList);
+        public Task UpdateAsync(Category category, CancellationToken cancellationToken = default)
+        {
+            _context.Set<Category>().Update(category);
+            return Task.CompletedTask;
         }
     }
 }

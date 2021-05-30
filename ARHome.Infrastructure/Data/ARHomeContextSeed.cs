@@ -33,7 +33,7 @@ namespace ARHome.Infrastructure.Data
 
         public async Task SeedAsync()
         {
-          //  _ARHomeContext.Database.Migrate();
+            _ARHomeContext.Database.Migrate();
 
             // categories - specifications
             await SeedCategoriesAsync();
@@ -50,6 +50,5 @@ namespace ARHome.Infrastructure.Data
                 await _categoryRepository.AddRangeAsync(categories);
             }
         }
-
     }
 }

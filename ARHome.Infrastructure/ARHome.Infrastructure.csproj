@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ARHome.Core\ARHome.Core.csproj" />
+    <ProjectReference Include="..\ARHome.Infrastructure.Abstractions\ARHome.Infrastructure.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

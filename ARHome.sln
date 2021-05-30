@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Primitives", "ARHome
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.GenericSubDomain", "ARHome.GenericSubDomain\ARHome.GenericSubDomain.csproj", "{468D97CD-0ECE-4269-A483-0D02D5CEC2FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Infrastructure.Abstractions", "ARHome.Infrastructure.Abstractions\ARHome.Infrastructure.Abstractions.csproj", "{F932D513-5611-4C30-82EE-5DB03FC3F428}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{468D97CD-0ECE-4269-A483-0D02D5CEC2FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{468D97CD-0ECE-4269-A483-0D02D5CEC2FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{468D97CD-0ECE-4269-A483-0D02D5CEC2FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F932D513-5611-4C30-82EE-5DB03FC3F428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F932D513-5611-4C30-82EE-5DB03FC3F428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F932D513-5611-4C30-82EE-5DB03FC3F428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F932D513-5611-4C30-82EE-5DB03FC3F428}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

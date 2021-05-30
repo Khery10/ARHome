@@ -1,4 +1,4 @@
-﻿namespace ARHome.Client.Category.Queries
+﻿namespace ARHome.Client.Category.Queries.GetCategoryById
 {
     public sealed class GetCategoryByIdQuery
     {
