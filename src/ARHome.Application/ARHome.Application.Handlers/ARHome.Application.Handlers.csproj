@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="10.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\ARHome.Client\ARHome.Client.Dto\ARHome.Client.Dto.csproj" />
+      <ProjectReference Include="..\..\ARHome.CrossCutting\ARHome.DataAccess\ARHome.DataAccess.csproj" />
+      <ProjectReference Include="..\..\ARHome.Domain\ARHome.Core\ARHome.Core.csproj" />
+      <ProjectReference Include="..\..\ARHome.Infrastructure\ARHome.Infrastructure.Abstractions\ARHome.Infrastructure.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>

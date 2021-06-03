@@ -3,27 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARHome.Api", "ARHome.Api\ARHome.Api.csproj", "{4617DA6E-5EE4-444E-87A9-2022F35CA850}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARHome.Api", "src\ARHome.Api\ARHome.Api.csproj", "{4617DA6E-5EE4-444E-87A9-2022F35CA850}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Core", "ARHome.Core\ARHome.Core.csproj", "{D0BACF57-4DDA-44BF-8A7B-87B5BAA8230E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Core", "src\ARHome.Domain\ARHome.Core\ARHome.Core.csproj", "{D0BACF57-4DDA-44BF-8A7B-87B5BAA8230E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Infrastructure", "ARHome.Infrastructure\ARHome.Infrastructure.csproj", "{43DA5893-6F02-4C47-B027-CB03CF7CD869}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Application", "ARHome.Application\ARHome.Application.csproj", "{5E0CEF35-66E3-43BB-8402-4AD9CBCC12F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Infrastructure", "src\ARHome.Infrastructure\ARHome.Infrastructure\ARHome.Infrastructure.csproj", "{43DA5893-6F02-4C47-B027-CB03CF7CD869}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{9454605D-7224-4E82-A2B2-7ADB7DE187BD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "applications", "applications", "{1850011E-8986-4B51-B28F-42C132A4D667}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Client", "ARHome.Client\ARHome.Client.csproj", "{07B5BEE8-ECE0-4D68-BC40-FBD8E797ECC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Client.Dto", "src\ARHome.Client\ARHome.Client.Dto\ARHome.Client.Dto.csproj", "{07B5BEE8-ECE0-4D68-BC40-FBD8E797ECC5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{3D81B5A5-A97D-40C4-915D-D115661BF1A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Primitives", "ARHome.Primitives\ARHome.Primitives.csproj", "{31A90C15-911C-4F09-A118-178274DD6921}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Primitives", "src\ARHome.CrossCutting\ARHome.Primitives\ARHome.Primitives.csproj", "{31A90C15-911C-4F09-A118-178274DD6921}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.GenericSubDomain", "ARHome.GenericSubDomain\ARHome.GenericSubDomain.csproj", "{468D97CD-0ECE-4269-A483-0D02D5CEC2FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.GenericSubDomain", "src\ARHome.CrossCutting\ARHome.GenericSubDomain\ARHome.GenericSubDomain.csproj", "{468D97CD-0ECE-4269-A483-0D02D5CEC2FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Infrastructure.Abstractions", "ARHome.Infrastructure.Abstractions\ARHome.Infrastructure.Abstractions.csproj", "{F932D513-5611-4C30-82EE-5DB03FC3F428}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Infrastructure.Abstractions", "src\ARHome.Infrastructure\ARHome.Infrastructure.Abstractions\ARHome.Infrastructure.Abstractions.csproj", "{F932D513-5611-4C30-82EE-5DB03FC3F428}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infastructure", "infastructure", "{C45EA01F-C1BC-497D-92A0-66B2FEAD09EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "application", "application", "{9CB1AF3F-4FE1-4220-8BA6-82B595156DEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "domain", "domain", "{346FD0E5-6EF8-453A-9927-819F9BB56096}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.DataAccess", "src\ARHome.CrossCutting\ARHome.DataAccess\ARHome.DataAccess.csproj", "{91F6DB1B-4BAE-478E-A3BA-CB57EEF93CC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Application.Handlers", "src\ARHome.Application\ARHome.Application.Handlers\ARHome.Application.Handlers.csproj", "{1044BB74-62AE-40B1-AF5B-66A89D8C6471}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +49,6 @@ Global
 		{43DA5893-6F02-4C47-B027-CB03CF7CD869}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43DA5893-6F02-4C47-B027-CB03CF7CD869}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43DA5893-6F02-4C47-B027-CB03CF7CD869}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E0CEF35-66E3-43BB-8402-4AD9CBCC12F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E0CEF35-66E3-43BB-8402-4AD9CBCC12F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E0CEF35-66E3-43BB-8402-4AD9CBCC12F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E0CEF35-66E3-43BB-8402-4AD9CBCC12F6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{07B5BEE8-ECE0-4D68-BC40-FBD8E797ECC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{07B5BEE8-ECE0-4D68-BC40-FBD8E797ECC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07B5BEE8-ECE0-4D68-BC40-FBD8E797ECC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,6 +65,14 @@ Global
 		{F932D513-5611-4C30-82EE-5DB03FC3F428}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F932D513-5611-4C30-82EE-5DB03FC3F428}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F932D513-5611-4C30-82EE-5DB03FC3F428}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F6DB1B-4BAE-478E-A3BA-CB57EEF93CC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F6DB1B-4BAE-478E-A3BA-CB57EEF93CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F6DB1B-4BAE-478E-A3BA-CB57EEF93CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F6DB1B-4BAE-478E-A3BA-CB57EEF93CC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1044BB74-62AE-40B1-AF5B-66A89D8C6471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1044BB74-62AE-40B1-AF5B-66A89D8C6471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1044BB74-62AE-40B1-AF5B-66A89D8C6471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1044BB74-62AE-40B1-AF5B-66A89D8C6471}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,9 +81,13 @@ Global
 		SolutionGuid = {B16A99C2-C0CB-4E4A-B30B-C40FCEBE60B8}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{4617DA6E-5EE4-444E-87A9-2022F35CA850} = {1850011E-8986-4B51-B28F-42C132A4D667}
 		{07B5BEE8-ECE0-4D68-BC40-FBD8E797ECC5} = {9454605D-7224-4E82-A2B2-7ADB7DE187BD}
 		{31A90C15-911C-4F09-A118-178274DD6921} = {3D81B5A5-A97D-40C4-915D-D115661BF1A3}
 		{468D97CD-0ECE-4269-A483-0D02D5CEC2FA} = {3D81B5A5-A97D-40C4-915D-D115661BF1A3}
+		{43DA5893-6F02-4C47-B027-CB03CF7CD869} = {C45EA01F-C1BC-497D-92A0-66B2FEAD09EC}
+		{F932D513-5611-4C30-82EE-5DB03FC3F428} = {C45EA01F-C1BC-497D-92A0-66B2FEAD09EC}
+		{D0BACF57-4DDA-44BF-8A7B-87B5BAA8230E} = {346FD0E5-6EF8-453A-9927-819F9BB56096}
+		{91F6DB1B-4BAE-478E-A3BA-CB57EEF93CC3} = {3D81B5A5-A97D-40C4-915D-D115661BF1A3}
+		{1044BB74-62AE-40B1-AF5B-66A89D8C6471} = {9CB1AF3F-4FE1-4220-8BA6-82B595156DEE}
 	EndGlobalSection
 EndGlobal
