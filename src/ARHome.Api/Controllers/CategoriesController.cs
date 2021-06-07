@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using ARHome.Client.Categories;
+using ARHome.Client.Categories.Commands.CreateCategory;
 using ARHome.Client.Categories.Commands.UpdateCategory;
 using ARHome.Client.Categories.Queries.GetAllCategories;
 using ARHome.Client.Categories.Queries.GetCategoryById;
@@ -19,7 +20,7 @@ namespace ARHome.Api.Controllers
     {
         private readonly IMediator _mediator;
 
-        public CategoriesController(IMediator mediator) 
+        public CategoriesController(IMediator mediator)
             => _mediator = mediator;
 
         [HttpGet]
@@ -31,19 +32,29 @@ namespace ARHome.Api.Controllers
         }
 
         [HttpGet("{categoryId}")]
-        public async Task<Response<CategoryDto>> GetCategoryById(
+        public async Task<Response<CategoryDto>> GetCategoryByIdAsync(
             [FromRoute] GetCategoryByIdQuery query,
             CancellationToken cancellationToken = default)
         {
             return await _mediator.SendQueryWithResponse<GetCategoryByIdQuery, CategoryDto>(query, cancellationToken);
         }
 
-        [HttpPost]
-        public async Task<Response> UpdateCategory(
+        [HttpPost("create")]
+        public async Task<Response<Guid>> CreateCategoryAsync(
+            [FromBody] CreateCategoryCommand command,
+            CancellationToken cancellationToken = default)
+        {
+            return await _mediator.SendCommandWithResponse<CreateCategoryCommand, Guid>(command, cancellationToken);
+        }
+
+        [HttpPost("{categoryId}/update")]
+        public async Task<Response> UpdateCategoryAsync(
+            Guid categoryId,
             [FromBody] UpdateCategoryCommand command,
             CancellationToken cancellationToken = default)
         {
-            return await _mediator.SendCommandWithResponse<UpdateCategoryCommand>(command, cancellationToken);
+            command.Id = categoryId;
+            return await _mediator.SendCommandWithResponse(command, cancellationToken);
         }
     }
 }

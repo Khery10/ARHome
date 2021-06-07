@@ -5,7 +5,7 @@ namespace ARHome.Application.Handlers.Converters
 {
     internal class CategoryConverter
     {
-        public static CategoryDto ConvertToDto(Category category)
+        public  CategoryDto ConvertToDto(Category category)
         {
             return new()
             {

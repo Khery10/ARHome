@@ -36,7 +36,7 @@ namespace ARHome.Api.Controllers
             return await _mediator.SendQueryWithResponse<GetProductByIdQuery, ProductDto>(query, cancellationToken);
         }
 
-        [HttpGet]
+        [HttpGet("getByCategory")]
         public async Task<Response<ProductDto[]>> GetProductsByCategoryIdAsync(
             [FromQuery] GetPagedProductsByCategoryQuery query,
             CancellationToken cancellationToken = default)
@@ -46,7 +46,7 @@ namespace ARHome.Api.Controllers
                 cancellationToken);
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<Response<Guid>> CreateProductAsync(
             [FromBody] CreateProductCommand command,
             CancellationToken cancellationToken)

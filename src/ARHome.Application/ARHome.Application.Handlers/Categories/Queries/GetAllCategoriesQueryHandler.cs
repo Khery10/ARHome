@@ -7,19 +7,23 @@ using ARHome.Client.Categories.Queries.GetAllCategories;
 using ARHome.GenericSubDomain.MediatR;
 using ARHome.Infrastructure.Abstractions.Repositories;
 
-namespace ARHome.Application.Handlers.Categories.Queries.GetAllCategories
+namespace ARHome.Application.Handlers.Categories.Queries
 {
-    internal sealed class GetAllCategoriesHandler  : QueryHandler<GetAllCategoriesQuery, CategoryDto[]>
+    internal sealed class GetAllCategoriesQueryHandler  : QueryHandler<GetAllCategoriesQuery, CategoryDto[]>
     {
         private readonly ICategoryRepository _repository;
+        private readonly CategoryConverter _converter;
 
-        public GetAllCategoriesHandler(ICategoryRepository repository)
-            => _repository = repository;
-        
+        public GetAllCategoriesQueryHandler(ICategoryRepository repository, CategoryConverter converter)
+        {
+            _repository = repository;
+            _converter = converter;
+        }
+
         public override async Task<CategoryDto[]> Handle(GetAllCategoriesQuery query, CancellationToken cancellationToken)
         {
             var categories = await _repository.GetAllAsync(cancellationToken);
-            return categories.Select(CategoryConverter.ConvertToDto).ToArray();
+            return categories.Select(_converter.ConvertToDto).ToArray();
         }
     }
 }

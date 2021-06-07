@@ -33,6 +33,7 @@ namespace ARHome.Infrastructure.Repository
         {
             var product = await _context
                 .Set<Product>()
+                .Include(p => p.Category)
                 .SingleOrDefaultAsync(cat => cat.Id == id, cancellationToken);
 
             if (product is null)

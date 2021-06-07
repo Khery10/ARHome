@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
+using ARHome.Application;
+using ARHome.Application.Handlers;
 using ARHome.GenericSubDomain.Common;
 using ARHome.GenericSubDomain.Middleware;
 using ARHome.Infrastructure;
@@ -30,6 +32,7 @@ namespace ARHome.Api
             var assembliesForScan = AssembliesForScan.Select(Assembly.Load).ToArray();
             
             services
+                .AddApplication(assembliesForScan)
                 .AddInfrastructure(_configuration)
                 .AddCommon(assembliesForScan)
                 .AddSingleton(_configuration)

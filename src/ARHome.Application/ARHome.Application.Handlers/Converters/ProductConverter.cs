@@ -7,7 +7,12 @@ namespace ARHome.Application.Handlers.Converters
 {
     internal sealed class ProductConverter
     {
-        public static ProductDto ConvertToDto(Product product)
+        private readonly CategoryConverter _categoryConverter;
+
+        public ProductConverter(CategoryConverter categoryConverter)
+            => _categoryConverter = categoryConverter;
+        
+        public ProductDto ConvertToDto(Product product)
         {
             return new()
             {
@@ -16,11 +21,11 @@ namespace ARHome.Application.Handlers.Converters
                 Description = product.Description,
                 CategoryId = product.CategoryId.Value,
                 ImageUrl = product.ImageUrl,
-                Category = product.Category is {} ? CategoryConverter.ConvertToDto(product.Category) : null
+                Category = product.Category is { } ? _categoryConverter.ConvertToDto(product.Category) : null
             };
         }
 
-        public static ProductDto[] ConvertToDto(IEnumerable<Product> products) 
+        public ProductDto[] ConvertToDto(IEnumerable<Product> products)
             => products.Select(ConvertToDto).ToArray();
     }
 }

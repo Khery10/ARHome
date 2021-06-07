@@ -5,6 +5,8 @@ namespace ARHome.Core.Categories
 {
     public sealed class Category : EntityObject<Category, CategoryKey>
     {
+        private Category() { }
+        
         internal Category(
             string name, 
             string description, 

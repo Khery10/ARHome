@@ -27,19 +27,9 @@ namespace ARHome.GenericSubDomain.Swagger
 
         private void UseSwagger(IApplicationBuilder app)
         {
-            const string routePrefix = "docs";
-            const string schemeName = "scheme.json";
-            
             app
-                .UseSwagger(o => o.RouteTemplate = $"/{routePrefix}/{{documentname}}/{schemeName}")
-                .UseSwaggerUI(s => {
-                    s.RoutePrefix = routePrefix;
-
-                    foreach (var apiInfo in _apiInfos)
-                    {
-                        s.SwaggerEndpoint($"../{routePrefix}/{apiInfo.Version}/{schemeName}", apiInfo.Version);
-                    }
-                });
+                .UseOpenApi()
+                .UseSwaggerUi3();
         }
     }
 }

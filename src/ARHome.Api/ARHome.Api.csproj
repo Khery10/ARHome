@@ -7,19 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="9.3.0" />
     <PackageReference Include="MediatR" Version="9.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.1" />
-    <PackageReference Include="NSwag.AspNetCore" Version="13.9.4" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ARHome.Application\ARHome.Application.Handlers\ARHome.Application.Handlers.csproj" />
+    <ProjectReference Include="..\ARHome.Application\ARHome.Application\ARHome.Application.csproj" />
     <ProjectReference Include="..\ARHome.Client\ARHome.Client.Dto\ARHome.Client.Dto.csproj" />
     <ProjectReference Include="..\ARHome.CrossCutting\ARHome.GenericSubDomain\ARHome.GenericSubDomain.csproj" />
     <ProjectReference Include="..\ARHome.Infrastructure\ARHome.Infrastructure\ARHome.Infrastructure.csproj" />

@@ -11,12 +11,16 @@ using ARHome.Infrastructure.Abstractions.Repositories;
 
 namespace ARHome.Application.Handlers.Products.Queries
 {
-    internal sealed class GetPagedProductsByCategory : QueryHandler<GetPagedProductsByCategoryQuery, ProductDto[]>
+    internal sealed class GetPagedProductsByCategoryQueryHandler : QueryHandler<GetPagedProductsByCategoryQuery, ProductDto[]>
     {
         private readonly IProductRepository _repository;
+        private readonly ProductConverter _converter;
 
-        public GetPagedProductsByCategory(IProductRepository repository)
-            => _repository = repository;
+        public GetPagedProductsByCategoryQueryHandler(IProductRepository repository, ProductConverter converter)
+        {
+            _repository = repository;
+            _converter = converter;
+        }
 
         public override async Task<ProductDto[]> Handle(GetPagedProductsByCategoryQuery query,
             CancellationToken cancellationToken)
@@ -26,7 +30,7 @@ namespace ARHome.Application.Handlers.Products.Queries
                     query.PageSize);
 
             var products = await _repository.GetAsync(specification, cancellationToken);
-            return ProductConverter.ConvertToDto(products);
+            return _converter.ConvertToDto(products);
         }
     }
 }
