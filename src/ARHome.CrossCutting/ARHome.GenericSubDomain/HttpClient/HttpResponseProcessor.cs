@@ -33,8 +33,8 @@ namespace ARHome.GenericSubDomain.HttpClient
             if (responseMessage.IsSuccessStatusCode)
             {
                 var content = await responseMessage.Content.ReadAsStringAsync();
-                var result = _jsonSerializer.Deserialize<Response<TResponse>>(content);
-                return result.Data;
+                var result = _jsonSerializer.Deserialize<TResponse>(content);
+                return result;
             }
 
             try

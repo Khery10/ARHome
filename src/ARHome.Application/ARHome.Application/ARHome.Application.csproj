@@ -11,6 +11,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\ARHome.Client\ARHome.Client.Dto\ARHome.Client.Dto.csproj" />
       <ProjectReference Include="..\ARHome.Application.Handlers\ARHome.Application.Handlers.csproj" />
+      <ProjectReference Include="..\ARHome.Application.Segmentation\ARHome.Application.Segmentation.csproj" />
     </ItemGroup>
 
 </Project>

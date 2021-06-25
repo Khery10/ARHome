@@ -22,36 +22,36 @@ namespace ARHome.Api.Controllers
             => _mediator = mediator;
 
         [HttpGet]
-        public async Task<Response<ProductDto[]>> GetProductsAsync(CancellationToken cancellationToken = default)
+        public async Task<ProductDto[]> GetProductsAsync(CancellationToken cancellationToken = default)
         {
             var query = new GetAllProductsQuery();
-            return await _mediator.SendQueryWithResponse<GetAllProductsQuery, ProductDto[]>(query, cancellationToken);
+            return await _mediator.SendQuery<GetAllProductsQuery, ProductDto[]>(query, cancellationToken);
         }
 
         [HttpGet("{productId}")]
-        public async Task<Response<ProductDto>> GetProductByIdAsync(
+        public async Task<ProductDto> GetProductByIdAsync(
             [FromRoute] GetProductByIdQuery query,
             CancellationToken cancellationToken = default)
         {
-            return await _mediator.SendQueryWithResponse<GetProductByIdQuery, ProductDto>(query, cancellationToken);
+            return await _mediator.SendQuery<GetProductByIdQuery, ProductDto>(query, cancellationToken);
         }
 
         [HttpGet("getByCategory")]
-        public async Task<Response<ProductDto[]>> GetProductsByCategoryIdAsync(
+        public async Task<ProductDto[]> GetProductsByCategoryIdAsync(
             [FromQuery] GetPagedProductsByCategoryQuery query,
             CancellationToken cancellationToken = default)
         {
-            return await _mediator.SendQueryWithResponse<GetPagedProductsByCategoryQuery, ProductDto[]>(
+            return await _mediator.SendQuery<GetPagedProductsByCategoryQuery, ProductDto[]>(
                 query,
                 cancellationToken);
         }
 
         [HttpPost("create")]
-        public async Task<Response<Guid>> CreateProductAsync(
+        public async Task<Guid> CreateProductAsync(
             [FromBody] CreateProductCommand command,
             CancellationToken cancellationToken)
         {
-            return await _mediator.SendCommandWithResponse<CreateProductCommand, Guid>(command, cancellationToken);
+            return await _mediator.SendCommand<CreateProductCommand, Guid>(command, cancellationToken);
         }
     }
 }

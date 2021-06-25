@@ -18,6 +18,7 @@ namespace ARHome.GenericSubDomain
                 services.TryAddEnumerable(ServiceDescriptor.Transient<IStartupFilter, SwaggerStartupFilter>());
                 services.TryAddEnumerable(ServiceDescriptor.Transient<IStartupFilter, ExceptionHandlerStartupFilter>());
                 services.TryAddEnumerable(ServiceDescriptor.Transient<IStartupFilter, SerilogStartupFilter>());
+                services.TryAddEnumerable(ServiceDescriptor.Transient<IStartupFilter, RequestHandlerStartupFilter>());
             });
 
             return webHostBuilder;

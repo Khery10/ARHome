@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\ARHome.Client\ARHome.Client.Dto\ARHome.Client.Dto.csproj" />
+      <ProjectReference Include="..\..\ARHome.CrossCutting\ARHome.GenericSubDomain\ARHome.GenericSubDomain.csproj" />
+    </ItemGroup>
+
+</Project>

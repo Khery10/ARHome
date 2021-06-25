@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Application.Handlers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Application", "src\ARHome.Application\ARHome.Application\ARHome.Application.csproj", "{55EBB4A9-761B-4C15-8F1E-ABE71B48CBFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARHome.Application.Segmentation", "src\ARHome.Application\ARHome.Application.Segmentation\ARHome.Application.Segmentation.csproj", "{9A77A538-24E3-4DED-A100-30407426002B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{55EBB4A9-761B-4C15-8F1E-ABE71B48CBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55EBB4A9-761B-4C15-8F1E-ABE71B48CBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55EBB4A9-761B-4C15-8F1E-ABE71B48CBFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A77A538-24E3-4DED-A100-30407426002B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A77A538-24E3-4DED-A100-30407426002B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A77A538-24E3-4DED-A100-30407426002B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A77A538-24E3-4DED-A100-30407426002B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,5 +102,6 @@ Global
 		{91F6DB1B-4BAE-478E-A3BA-CB57EEF93CC3} = {3D81B5A5-A97D-40C4-915D-D115661BF1A3}
 		{1044BB74-62AE-40B1-AF5B-66A89D8C6471} = {9CB1AF3F-4FE1-4220-8BA6-82B595156DEE}
 		{55EBB4A9-761B-4C15-8F1E-ABE71B48CBFC} = {9CB1AF3F-4FE1-4220-8BA6-82B595156DEE}
+		{9A77A538-24E3-4DED-A100-30407426002B} = {9CB1AF3F-4FE1-4220-8BA6-82B595156DEE}
 	EndGlobalSection
 EndGlobal

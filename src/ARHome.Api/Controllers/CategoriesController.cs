@@ -24,27 +24,27 @@ namespace ARHome.Api.Controllers
             => _mediator = mediator;
 
         [HttpGet]
-        public async Task<Response<CategoryDto[]>> GetCategoriesListAsync(CancellationToken cancellationToken = default)
+        public async Task<CategoryDto[]> GetCategoriesListAsync(CancellationToken cancellationToken = default)
         {
             var query = new GetAllCategoriesQuery();
-            return await _mediator.SendQueryWithResponse<GetAllCategoriesQuery, CategoryDto[]>(query,
+            return await _mediator.SendQuery<GetAllCategoriesQuery, CategoryDto[]>(query,
                 cancellationToken);
         }
 
         [HttpGet("{categoryId}")]
-        public async Task<Response<CategoryDto>> GetCategoryByIdAsync(
+        public async Task<CategoryDto> GetCategoryByIdAsync(
             [FromRoute] GetCategoryByIdQuery query,
             CancellationToken cancellationToken = default)
         {
-            return await _mediator.SendQueryWithResponse<GetCategoryByIdQuery, CategoryDto>(query, cancellationToken);
+            return await _mediator.SendQuery<GetCategoryByIdQuery, CategoryDto>(query, cancellationToken);
         }
 
         [HttpPost("create")]
-        public async Task<Response<Guid>> CreateCategoryAsync(
+        public async Task<Guid> CreateCategoryAsync(
             [FromBody] CreateCategoryCommand command,
             CancellationToken cancellationToken = default)
         {
-            return await _mediator.SendCommandWithResponse<CreateCategoryCommand, Guid>(command, cancellationToken);
+            return await _mediator.SendCommand<CreateCategoryCommand, Guid>(command, cancellationToken);
         }
 
         [HttpPost("{categoryId}/update")]

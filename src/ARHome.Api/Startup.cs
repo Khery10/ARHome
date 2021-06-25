@@ -20,19 +20,20 @@ namespace ARHome.Api
         private static readonly string[] AssembliesForScan =
         {
             "ARHome.Application.Handlers",
+            "ARHome.Application.Segmentation",
             "ARHome.Core"
         };
-        
+
         private readonly IConfiguration _configuration;
 
         public Startup(IConfiguration configuration) => _configuration = configuration;
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             var assembliesForScan = AssembliesForScan.Select(Assembly.Load).ToArray();
-            
+
             services
-                .AddApplication(assembliesForScan)
+                .AddApplication(_configuration, assembliesForScan)
                 .AddInfrastructure(_configuration)
                 .AddCommon(assembliesForScan)
                 .AddSingleton(_configuration)
