@@ -1,6 +1,8 @@
 ﻿using ARHome.DataAccess;
 using ARHome.GenericSubDomain.RabbitMq;
+using ARHome.Infrastructure.Abstractions.ImageStorage;
 using ARHome.Infrastructure.Abstractions.Repositories;
+using ARHome.Infrastructure.ImageStorage;
 using ARHome.Infrastructure.Options;
 using ARHome.Infrastructure.Repository;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +20,8 @@ namespace ARHome.Infrastructure
                 .AddSingleton(connectionsStrings)
                 .AddEntityFrameworkDataAccess<ARHomeContext>(connectionsStrings.ARHomeConnectionString)
                 .AddRabbitMqPublisher(configuration)
-                .AddRepositories();
+                .AddRepositories()
+                .AddImageStorage();
 
             return services;
         }

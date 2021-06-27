@@ -9,13 +9,11 @@ namespace ARHome.Core.Products
         internal Product(
             string name,
             string description,
-            string imageUrl,
             CategoryKey categoryId)
         {
             Id = new ProductKey(Guid.NewGuid());
             Name = name;
             Description = description;
-            ImageUrl = imageUrl;
             CategoryId = categoryId;
         }
         
@@ -24,9 +22,7 @@ namespace ARHome.Core.Products
         public string Name { get; private set; }
         
         public string Description { get; private set; }
-        
-        public string ImageUrl { get; private set; }
-        
+
         public CategoryKey CategoryId { get; private set; }
         
         public Category Category { get; private set; }

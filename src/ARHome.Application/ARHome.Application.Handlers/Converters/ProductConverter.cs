@@ -20,7 +20,6 @@ namespace ARHome.Application.Handlers.Converters
                 Name = product.Name,
                 Description = product.Description,
                 CategoryId = product.CategoryId.Value,
-                ImageUrl = product.ImageUrl,
                 Category = product.Category is { } ? _categoryConverter.ConvertToDto(product.Category) : null
             };
         }

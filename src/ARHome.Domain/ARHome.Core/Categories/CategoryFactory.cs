@@ -7,16 +7,12 @@ namespace ARHome.Core.Categories
     {
         public Category Create(
             string name,
-            string description,
-            string imageUrl)
+            string description)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException(nameof(name));
-
-            if (string.IsNullOrEmpty(imageUrl))
-                throw new ArgumentNullException(nameof(imageUrl));
-
-            return new Category(name, description, imageUrl);
+            
+            return new Category(name, description);
         }
     }
 }

@@ -1,12 +1,14 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using ARHome.Client.Products;
 using ARHome.Client.Products.Commands.CreateProduct;
 using ARHome.Client.Products.Queries.GetAllProducts;
 using ARHome.Client.Products.Queries.GetPagedProductsListByCategory;
+using ARHome.Client.Products.Queries.GetProductAvicon;
 using ARHome.Client.Products.Queries.GetProductById;
 using ARHome.GenericSubDomain.MediatR;
 
@@ -52,6 +54,16 @@ namespace ARHome.Api.Controllers
             CancellationToken cancellationToken)
         {
             return await _mediator.SendCommand<CreateProductCommand, Guid>(command, cancellationToken);
+        }
+
+        [HttpGet("{productId}/avicon")]
+        public async Task<IActionResult> GetAviconAsync(
+            [FromRoute] GetProductAviconQuery query,
+            CancellationToken cancellationToken)
+        {
+            var stream = await _mediator.SendQuery<GetProductAviconQuery, Stream>(query, cancellationToken);
+
+            return new FileStreamResult(stream, "image/jpeg");
         }
     }
 }

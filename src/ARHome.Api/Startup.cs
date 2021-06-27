@@ -21,6 +21,7 @@ namespace ARHome.Api
         {
             "ARHome.Application.Handlers",
             "ARHome.Application.Segmentation",
+            "ARHome.Application.Validation",
             "ARHome.Core"
         };
 
