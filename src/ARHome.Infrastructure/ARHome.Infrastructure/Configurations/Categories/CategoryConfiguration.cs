@@ -14,6 +14,10 @@ namespace ARHome.Infrastructure.Configurations.Categories
             builder.Property(e => e.Id)
                 .ValueGeneratedNever()
                 .HasConversion(v => v.Value, v => new CategoryKey(v));
+
+            builder.Property(e => e.SurfaceType)
+                .ValueGeneratedNever()
+                .HasConversion(v => v.Code, code => new SurfaceType(code));
         }
     }
 }

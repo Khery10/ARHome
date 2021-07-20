@@ -14,6 +14,10 @@ namespace ARHome.Application.Validation.Categories.Commands
             RuleFor(c => c.ImageUrl)
                 .NotEmpty()
                 .WithMessage(ValidationErrors.IsEmptyValueMessage(nameof(CreateCategoryCommand.ImageUrl)));
+
+            RuleFor(c => c.SurfaceType)
+                .NotEmpty()
+                .WithMessage(ValidationErrors.IsEmptyValueMessage(nameof(CreateCategoryCommand.SurfaceType)));
         }
     }
 }

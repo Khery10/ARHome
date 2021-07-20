@@ -1,4 +1,6 @@
-﻿using ARHome.Client.Categories;
+﻿using System.Collections.Generic;
+using System.Linq;
+using ARHome.Client.Categories;
 using ARHome.Core.Categories;
 
 namespace ARHome.Application.Handlers.Converters
@@ -14,5 +16,9 @@ namespace ARHome.Application.Handlers.Converters
                 Description = category.Description,
             };
         }
+
+
+        public CategoryDto[] ConvertToDto(IEnumerable<Category> categories)
+            => categories.Select(ConvertToDto).ToArray();
     }
 }

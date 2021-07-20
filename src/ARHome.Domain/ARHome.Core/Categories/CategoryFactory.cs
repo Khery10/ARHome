@@ -7,12 +7,13 @@ namespace ARHome.Core.Categories
     {
         public Category Create(
             string name,
-            string description)
+            string description,
+            SurfaceType surfaceType)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException(nameof(name));
             
-            return new Category(name, description);
+            return new Category(name, description, surfaceType);
         }
     }
 }

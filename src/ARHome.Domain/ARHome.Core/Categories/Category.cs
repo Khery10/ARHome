@@ -7,18 +7,22 @@ namespace ARHome.Core.Categories
     {
         internal Category(
             string name, 
-            string description)
+            string description,
+            SurfaceType surfaceType)
         {
             Id = new CategoryKey(Guid.NewGuid());
             Name = name;
             Description = description;
+            SurfaceType = surfaceType;
         }
         
         public CategoryKey Id { get; private set; }
 
         public string Name { get; private set; }
         
-        public string Description { get; private set; }
+        public string Description { get;  set; }
+
+        public SurfaceType SurfaceType { get; set; }
         
         public override CategoryKey GetKey() => Id;
     }

@@ -10,6 +10,7 @@ using ARHome.Client.Categories;
 using ARHome.Client.Categories.Commands.CreateCategory;
 using ARHome.Client.Categories.Commands.UpdateCategory;
 using ARHome.Client.Categories.Queries.GetAllCategories;
+using ARHome.Client.Categories.Queries.GetCategoriesBySurface;
 using ARHome.Client.Categories.Queries.GetCategoryAviconQuery;
 using ARHome.Client.Categories.Queries.GetCategoryById;
 using ARHome.GenericSubDomain.MediatR;
@@ -53,12 +54,20 @@ namespace ARHome.Api.Controllers
 
         [HttpPost("{categoryId}/update")]
         public async Task<Response> UpdateCategoryAsync(
-            Guid categoryId,
+            [FromRoute]Guid categoryId,
             [FromBody] UpdateCategoryCommand command,
             CancellationToken cancellationToken = default)
         {
             command.Id = categoryId;
             return await _mediator.SendCommandWithResponse(command, cancellationToken);
+        }
+
+        [HttpGet("surfaceTypes/{surface}")]
+        public async Task<CategoryDto[]> GetBySurfaceAsync(
+            [FromRoute] GetCategoriesBySurfaceQuery query, 
+            CancellationToken cancellationToken = default)
+        {
+            return await _mediator.SendQuery<GetCategoriesBySurfaceQuery, CategoryDto[]>(query, cancellationToken);
         }
 
         [HttpGet("{categoryId}/avicon")]

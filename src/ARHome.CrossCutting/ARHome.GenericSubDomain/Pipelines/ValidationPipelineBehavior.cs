@@ -35,8 +35,10 @@ namespace ARHome.GenericSubDomain.Pipelines
 
                 foreach (IValidator validator in validators)
                 {
+                    var context = new ValidationContext<object>(validateObject.InnerRequest);
+                    
                     ValidationResult validationResult = await validator.ValidateAsync(
-                        validateObject.InnerRequest,
+                        context,
                         cancellationToken);
 
                     if (!validationResult.IsValid)

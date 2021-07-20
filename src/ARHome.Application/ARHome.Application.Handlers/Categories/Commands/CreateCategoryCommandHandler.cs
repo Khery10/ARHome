@@ -16,10 +16,10 @@ namespace ARHome.Application.Handlers.Categories.Commands
         private readonly CategoryFactory _factory;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IImageStorage _imageStorage;
-        
+
         public CreateCategoryCommandHandler(
-            ICategoryRepository repository, 
-            CategoryFactory factory, 
+            ICategoryRepository repository,
+            CategoryFactory factory,
             IUnitOfWork unitOfWork,
             IImageStorage imageStorage)
         {
@@ -28,27 +28,30 @@ namespace ARHome.Application.Handlers.Categories.Commands
             _unitOfWork = unitOfWork;
             _imageStorage = imageStorage;
         }
-        
+
         public override async Task<Guid> Handle(CreateCategoryCommand command, CancellationToken cancellationToken)
         {
             var category = CreateCategory(command);
-            
+
             await _repository.AddAsync(category, cancellationToken);
             await _imageStorage.UploadImageAsync(
                 command.ImageUrl,
                 nameof(Category),
                 category.Id.Value,
                 cancellationToken);
-            
+
             await _unitOfWork.SaveAsync(cancellationToken);
             return category.Id.Value;
         }
 
         private Category CreateCategory(CreateCategoryCommand command)
         {
+            var surfaceCode = Enum.Parse<SurfaceTypeCode>(command.SurfaceType, true);
+            
             return _factory.Create(
-                command.Name, 
-                command.Description);
+                command.Name,
+                command.Description,
+                new SurfaceType(surfaceCode));
         }
     }
 }

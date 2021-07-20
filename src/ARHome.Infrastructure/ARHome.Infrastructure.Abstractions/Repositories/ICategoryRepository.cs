@@ -15,5 +15,9 @@ namespace ARHome.Infrastructure.Abstractions.Repositories
         public Task AddAsync(Category category, CancellationToken cancellationToken = default);
 
         public Task UpdateAsync(Category category, CancellationToken cancellationToken = default);
+
+        public Task<Category[]> GetBySurfaceAsync(
+            SurfaceType surfaceType,
+            CancellationToken cancellationToken = default);
     }
 }

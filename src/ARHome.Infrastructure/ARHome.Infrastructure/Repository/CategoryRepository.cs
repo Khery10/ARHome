@@ -1,5 +1,5 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ARHome.Core.Categories;
@@ -41,6 +41,16 @@ namespace ARHome.Infrastructure.Repository
         {
             _context.Set<Category>().Update(category);
             return Task.CompletedTask;
+        }
+
+        public async Task<Category[]> GetBySurfaceAsync(SurfaceType surfaceType,
+            CancellationToken cancellationToken = default)
+        {
+            var universalSurface = new SurfaceType(SurfaceTypeCode.Universal);
+            
+            return await _context.Set<Category>()
+                .Where(c => c.SurfaceType == surfaceType || c.SurfaceType == universalSurface)
+                .ToArrayAsync(cancellationToken);
         }
     }
 }

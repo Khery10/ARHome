@@ -4,15 +4,17 @@ using ARHome.Core.Categories;
 using ARHome.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ARHome.Infrastructure.Migrations
 {
     [DbContext(typeof(ARHomeContext))]
-    partial class ARHomeContextModelSnapshot : ModelSnapshot
+    [Migration("20210629133630_AddSurfaceType")]
+    partial class AddSurfaceType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
